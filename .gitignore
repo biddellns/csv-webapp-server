@@ -1,1 +1,4 @@
 scratch/
+db.sqlite3
+tags
+__pycache__
