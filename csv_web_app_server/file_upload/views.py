@@ -5,5 +5,5 @@ from csv_web_app_server.file_upload.serializers import CsvUploadSerializer
 
 class CsvUploadViewSet(viewsets.ModelViewSet):
     queryset = CsvUpload.objects.all()
-    serializer_class = CsvUplaodSerializer
+    serializer_class = CsvUploadSerializer
 
