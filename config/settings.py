@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY', preprocessor=get_secret_key, default=None)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 
 
 # Application definition
