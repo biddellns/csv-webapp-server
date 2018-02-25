@@ -7,13 +7,16 @@ def import_csv_file_validator(input_file):
     try:
         stream = input_file.read().decode('utf-8')
         hasHeaders = csv.Sniffer().has_header(stream)
+
         dialect = csv.Sniffer().sniff(stream)
-        print('did we get here')
         input_file.seek(0)
     except csv.Error:
         raise ValidationError('Not a valid CSV file')
 
     reader = csv.reader(input_file.read().decode('utf-8').splitlines(), dialect)
+
+    if not hasHeaders:
+        raise ValidationError('CSV must contain headers')
 
     for row, column in enumerate(reader):
         # Header check is in a different validator
