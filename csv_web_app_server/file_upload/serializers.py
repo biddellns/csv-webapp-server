@@ -4,4 +4,4 @@ from .models import CsvUpload
 class CsvUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = CsvUpload
-        fields = ('document', 'upload_date')
+        fields = ('pk', 'document', 'upload_date')
