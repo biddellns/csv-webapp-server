@@ -21,11 +21,11 @@ from rest_framework.routers import DefaultRouter
 
 from csv_web_app_server.file_upload.views import CsvUploadViewSet
 
-router = DefaultRouter()
-router.register(r'csv-uploads', CsvUploadViewSet)
+router_v1 = DefaultRouter()
+router_v1.register(r'csv-uploads', CsvUploadViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('api/', include(router_v1.urls))
 ]
