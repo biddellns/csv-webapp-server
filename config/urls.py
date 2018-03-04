@@ -28,4 +28,5 @@ router_v1.register(r'csv-test', CsvUploadApiView, 'csv-test')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_v1.urls)),
+    path('wtf/csv-test', CsvUploadApiView),
 ]
