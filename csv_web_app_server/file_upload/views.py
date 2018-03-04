@@ -11,3 +11,6 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
     queryset = CsvUpload.objects.all()
     serializer_class = CsvUploadSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(document=self.request.data)
+
