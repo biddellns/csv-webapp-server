@@ -18,10 +18,9 @@ class CsvUploadApiView(APIView):
     def put(self, request):
         try:
             file_obj = request.FILES['upload']
-
             serializer = CsvUploadSerializer(data={'document':file_obj})
             serializer.is_valid()
-            serializer.save()
-            return Response(data=request.FILES, status=201)
+
+            return Response(data=serializer.data, status=201)
         except:
-            return Response(data=request.FILES, status=400)
+            return Response(status=400)
