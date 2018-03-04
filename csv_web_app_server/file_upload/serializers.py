@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CsvUpload
 
 class CsvUploadSerializer(serializers.ModelSerializer):
-    document = serializers.FileField(read_only=True)
+    document = serializers.FileField(required=False)
 
     class Meta:
         model = CsvUpload
