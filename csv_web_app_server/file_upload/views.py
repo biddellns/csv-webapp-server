@@ -3,6 +3,7 @@ import logging
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.response import Response
 
 from csv_web_app_server.file_upload.models import CsvUpload
 from csv_web_app_server.file_upload.serializers import CsvUploadSerializer
@@ -15,13 +16,10 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
         serializer.save(document=self.request.data)
 
 class CsvUploadApiView(APIView):
-    logger = logging.getLogger(__name__)
+    parser_classes = (MultiPartParser,)
 
-    parser_classes = (MultiPartParser, FormParser)
-
-    def put(self, request, filename):
+    def put(self, request):
         try:
-            logger.info('Received ' + filename)
             file_obj = request.data['file']
 
             #with open(filename, 'wb') as f:
@@ -29,6 +27,6 @@ class CsvUploadApiView(APIView):
             #        f.write(chunk)
 
             CsvUploadSerializer(document=file_obj)
-            return Response(status=201)
+            return Response(data=request.data, status=201)
         except:
-            return Response(status=400)
+            return Response(data=request.data, status=400)

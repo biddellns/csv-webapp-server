@@ -23,10 +23,9 @@ from csv_web_app_server.file_upload.views import CsvUploadViewSet, CsvUploadApiV
 
 router_v1 = DefaultRouter()
 router_v1.register(r'csv-uploads', CsvUploadViewSet)
-router_v1.register(r'csv-test', CsvUploadApiView, 'csv-test')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_v1.urls)),
-    re_path('api/wtf/csv-test/?P<filename>[\w.]{0,100}/$', CsvUploadApiView.as_view()),
+    path('api/wtf/csv-test/', CsvUploadApiView.as_view()),
 ]
