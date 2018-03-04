@@ -19,13 +19,13 @@ from django.conf.urls import url, include
 
 from rest_framework.routers import DefaultRouter
 
-from csv_web_app_server.file_upload.views import CsvUploadViewSet
+from csv_web_app_server.file_upload.views import CsvUploadViewSet, CsvUploadApiView
 
 router_v1 = DefaultRouter()
 router_v1.register(r'csv-uploads', CsvUploadViewSet)
-
+router_v1.register(r'csv-test', CsvUploadApiView, 'csv-test')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router_v1.urls))
+    path('api/', include(router_v1.urls)),
 ]
