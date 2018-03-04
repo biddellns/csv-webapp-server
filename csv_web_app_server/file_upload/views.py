@@ -19,15 +19,12 @@ class CsvUploadApiView(APIView):
     parser_classes = (MultiPartParser,)
 
     def put(self, request):
-        file_obj = request.FILES['upload']
+        try:
+            file_obj = request.FILES['upload']
 
-            #with open(filename, 'wb') as f:
-            #   for chunk in f.chunks():
-            #        f.write(chunk)
-        serializer = CsvUploadSerializer(data=request.data)
-        print(serializer.is_valid())
-        serializer.is_valid()
-        serializer.save()
-        return Response(data=request.FILES, status=201)
-#        except:
-#            return Response(data=request.FILES, status=400)
+            serializer = CsvUploadSerializer(data={'document':file_obj})
+            serializer.is_valid()
+            serializer.save()
+            return Response(data=request.FILES, status=201)
+        except:
+            return Response(data=request.FILES, status=400)
