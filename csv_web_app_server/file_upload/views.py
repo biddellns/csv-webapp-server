@@ -15,6 +15,13 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
 class CsvUploadApiView(APIView):
     parser_classes = (MultiPartParser,)
 
+    def get(self, request, pk):
+        try:
+            obj = CsvUpload.objects.get(pk=pk)
+        except:
+            return Response(status=401)
+
+
     def put(self, request):
         try:
             file_obj = request.FILES['upload']
