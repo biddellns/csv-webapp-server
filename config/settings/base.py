@@ -131,6 +131,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = '/var/www/static/'
 
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
