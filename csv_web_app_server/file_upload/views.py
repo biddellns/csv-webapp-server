@@ -7,6 +7,8 @@ from rest_framework.decorators import detail_route
 from csv_web_app_server.file_upload.models import CsvUpload
 from csv_web_app_server.file_upload.serializers import CsvUploadSerializer
 
+from .utilities import convert_csv_to_json
+
 class CsvUploadViewSet(viewsets.ModelViewSet):
     queryset = CsvUpload.objects.all()
     serializer_class = CsvUploadSerializer
@@ -26,4 +28,11 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['get'])
     def get_data(self, request, pk=None):
         document = self.get_object()
-        return Response("doc found", status=200)
+        print(document)
+        filename = document.document
+        print(filename)
+ 
+        data = convert_csv_to_json(filename)
+        print(data)
+
+        return Response(data=data, status=200)
