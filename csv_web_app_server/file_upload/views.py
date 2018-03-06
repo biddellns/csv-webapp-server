@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 
@@ -17,6 +18,8 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
             serializer.is_valid()
             serializer.save()
 
-            return Response(serializer.data, status=201)
+            return Response(serializer.data, status=HTTP_201_CREATED)
         except:
-            return Response(status=400)
+            return Response(status=HTTP_400_BAD_REQUEST)
+
+
