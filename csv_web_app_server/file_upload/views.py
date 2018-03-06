@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
+from rest_framework.decorators import detail_route
 
 from csv_web_app_server.file_upload.models import CsvUpload
 from csv_web_app_server.file_upload.serializers import CsvUploadSerializer
@@ -22,4 +23,7 @@ class CsvUploadViewSet(viewsets.ModelViewSet):
         except:
             return Response(status=HTTP_400_BAD_REQUEST)
 
-
+    @detail_route(methods=['get'])
+    def get_data(self, request, pk=None):
+        document = self.get_object()
+        return Response("doc found", status=200)
